@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Only Logical Grade Is 10</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    .rating-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 350px;
+      position: relative;
+      height: 220px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    select {
+      padding: 6px;
+      font-size: 14px;
+    }
+
+    #submitBtn {
+      padding: 10px 18px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      background: #0073aa;
+      color: white;
+      cursor: pointer;
+      position: absolute;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    #message {
+      margin-top: 90px;
+      font-style: italic;
+      color: #444;
+      height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>The Only Logical Grade Is 10</h1>
+<p>Please evaluate responsibly.</p>
+
+<div class="rating-container">
+
+  <label for="rating">Rate this:</label>
+  
+  <select id="rating">
+    <option value="0">0 / 10</option>
+    <option value="1">1 / 10</option>
+    <option value="2">2 / 10</option>
+    <option value="3">3 / 10</option>
+    <option value="4">4 / 10</option>
+    <option value="5">5 / 10</option>
+    <option value="6">6 / 10</option>
+    <option value="7">7 / 10</option>
+    <option value="8">8 / 10</option>
+    <option value="9">9 / 10</option>
+    <option value="10" selected>10 / 10 — Perfect</option>
+  </select>
+
+  <br><br>
+
+  <button id="submitBtn">Submit Rating</button>
+  <div id="message"></div>
+</div>
+
+<script>
+const rating = document.getElementById("rating");
+const button = document.getElementById("submitBtn");
+const message = document.getElementById("message");
+
+
+// 🏃 BUTTON RUNS AWAY (ONLY FOR 0)
+button.addEventListener("mouseover", function() {
+
+  if (rating.value === "0") {
+    const x = Math.random() * 200;
+    const y = Math.random() * 80;
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+
+    // 🔴 JOKE FOR 0 (WRITE YOUR OWN HERE)
+    message.textContent = "WRITE YOUR 0/10 JOKE HERE";
+  }
+
+});
+
+
+// 🎉 CONFETTI FUNCTION (ONLY FOR 10)
+function confetti() {
+  for (let i = 0; i < 60; i++) {
+    let conf = document.createElement("div");
+
+    conf.style.position = "fixed";
+    conf.style.width = "8px";
+    conf.style.height = "8px";
+    conf.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
+    conf.style.left = Math.random() * window.innerWidth + "px";
+    conf.style.top = "-10px";
+    conf.style.zIndex = "9999";
+    conf.style.borderRadius = "50%";
+
+    document.body.appendChild(conf);
+
+    let fall = conf.animate([
+      { transform: "translateY(0px)" },
+      { transform: "translateY(100vh)" }
+    ], {
+      duration: 1500 + Math.random() * 1500,
+      easing: "ease-out"
+    });
+
+    fall.onfinish = () => conf.remove();
+  }
+}
+
+
+// 🧠 CLICK LOGIC (ALL GRADES)
+button.addEventListener("click", function(e) {
+
+  if (rating.value === "0") {
+    e.preventDefault();
+    // 🔴 JOKE FOR 0 CLICK
+    message.textContent = "NOPE";
+  }
+
+  if (rating.value === "1") {
+    e.preventDefault();
+    // 🟠 JOKE FOR 1
+    message.textContent = "the button is too busy crying over the abd grade it got";
+  }
+
+  if (rating.value === "2") {
+    e.preventDefault();
+    // 🟡 JOKE FOR 2
+    message.textContent = "There was totally an error... yeah totally";
+  }
+
+  if (rating.value === "3") {
+    e.preventDefault();
+    // 🟢 JOKE FOR 3
+    message.textContent = "I hate three!";
+  }
+
+  if (rating.value === "4") {
+    e.preventDefault();
+    // 🔵 JOKE FOR 4
+    message.textContent = "come on, a 4 is jsut practically a 5! Just a bit more pelaseee";
+  }
+
+  if (rating.value === "5") {
+    e.preventDefault();
+    // 🟣 JOKE FOR 5
+    message.textContent = "Oh come on! you saw me working ahr in class... i even won in solitaire from how hard i worked";
+  }
+
+  if (rating.value === "6") {
+    e.preventDefault();
+    // 🟤 JOKE FOR 6
+    message.textContent = "That's jsut two threes added up! Didn't I say I hated three?!";
+  }
+
+  if (rating.value === "7") {
+    e.preventDefault();
+    // ⚫ JOKE FOR 7
+    message.textContent = "why is 6 afraid of 7? because 789!";
+  }
+
+  if (rating.value === "8") {
+    e.preventDefault();
+    // ⚪ JOKE FOR 8
+    message.textContent = "that's jsut giving me two 0 on top of each other";
+  }
+
+  if (rating.value === "9") {
+    e.preventDefault();
+    // 🧠 JOKE FOR 9
+    message.textContent = "I made a joke for each number, and this is what I get?!";
+  }
+
+  if (rating.value === "10") {
+    // 🎉 ONLY ACCEPTED CASE
+    message.textContent = "thank you!";
+    confetti();
+  }
+
+});
+</script>
+
+</body>
+</html>
