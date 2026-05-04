@@ -106,7 +106,7 @@ button.addEventListener("click", (e) => {
   const v = rating.value;
 
   if (v === "0") message.textContent = "No";
-  else if (v === "1") message.textContent = "Crying";
+  else if (v === "1") message.textContent = "The button is too sad to accept this grade";
   else if (v === "2") { message.textContent = "Try again"; button.classList.add("red-glow","shake"); }
   else if (v === "3") { message.textContent = "No 3"; button.classList.add("red-glow"); }
   else if (v === "4") { message.textContent = "Almost"; button.classList.add("beg"); }
