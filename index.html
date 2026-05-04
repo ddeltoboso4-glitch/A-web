@@ -1,5 +1,3 @@
-<h1>Interactive Rating System</h1>
-<p>This project explores how user interaction and humor can influence decision-making in web design.</p>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,8 +104,8 @@
 
 <div class="rating-container">
 
-  <label for="rating">Rate this:</label>
-
+<label for="userText">Write something about this website:</label><br>
+<textarea id="userText" rows="3" style="width:100%; margin-top:5px; padding:8px;"></textarea>
   <select id="rating">
     <option value="0">0</option>
     <option value="1">1</option>
@@ -236,13 +234,17 @@ button.addEventListener("click", function(e) {
     message.textContent = "the system is obviously not working, so you have to give me another grade.";
     button.classList.add("shake");
   }
+/* 9 auto convert to 10 (NO AUTO SUBMIT) */
+if (rating.value === "9") {
+  message.textContent = "I did a bit for every number and this is what you give me? Upgrading...";
 
-  /* 9 auto convert to 10 (NO CONFETTI HERE) */
-  if (rating.value === "9") {
-    message.textContent = "Upgrading score...";
+  setTimeout(() => {
+    rating.value = "10";
+    message.textContent = "There. Now press submit properly.";
+  }, 800);
 
-    setTimeout(() => {
-      rating.value = "10";
+  return; // IMPORTANT: stops it from running 10 automatically
+}
   }
 
   /* 10 success */
