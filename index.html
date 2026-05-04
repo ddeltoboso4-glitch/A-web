@@ -147,7 +147,9 @@ function confetti() {
 }
 
 /* ESCAPE FOR 0 */
-button.addEventListener("mouseover", () => {
+button.addEventListener("mouseover", () => {function resetStates() {
+  button.classList.remove("red-glow", "shake", "beg", "green", "fire");
+}
   if (rating.value === "0") {
     button.style.left = Math.random()*250 + "px";
     button.style.top = Math.random()*100 + "px";
