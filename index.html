@@ -68,12 +68,14 @@
 </div>
 
 <script>
-
-const extraLink = document.getElementById("extraLink");
+  
+document.addEventListener("DOMContentLoaded", function () {
+  
 const rating = document.getElementById("rating");
 const button = document.getElementById("submitBtn");
 const message = document.getElementById("message");
-
+const extraLink = document.getElementById("extraLink");
+  
 function reset() {
   button.className = "";
   button.style.left = "0px";
@@ -90,7 +92,7 @@ function confetti() {
     d.style.left = Math.random() * window.innerWidth + "px";
     d.style.top = "-10px";
     document.body.appendChild(d);
-
+ 
     d.animate(
       [{ transform: "translateY(0)" }, { transform: "translateY(100vh)" }],
       { duration: 1500 }
@@ -129,7 +131,9 @@ button.addEventListener("click", (e) => {
     button.classList.add("green");
     confetti();
 
+     if (extraLink) {
     extraLink.innerHTML = '<a href="blog.html">Read how this was made</a>';
+  }
   }
 });
 </script>
