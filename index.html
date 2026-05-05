@@ -63,10 +63,13 @@
 
   <button id="submitBtn">Submit</button>
   <div id="message"></div>
-
+  <div id="extralink"></div>
+  
 </div>
 
 <script>
+
+const extraLink = document.getElementById("extraLink");
 const rating = document.getElementById("rating");
 const button = document.getElementById("submitBtn");
 const message = document.getElementById("message");
@@ -125,6 +128,8 @@ button.addEventListener("click", (e) => {
     message.textContent = "OK";
     button.classList.add("green");
     confetti();
+
+    extraLink.innerHTML = '<a href="blog.html">Read how this was made</a>';
   }
 });
 </script>
