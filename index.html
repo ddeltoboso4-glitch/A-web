@@ -1,142 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>A web</title>
-  
-
-  <style>
-    body { font-family: Arial; margin: 40px; }
-
-    .rating-container {
-      position: relative;
-      width: 360px;
-      height: 240px;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-    }
-
-    #submitBtn {
-      position: absolute;
-      left: 0;
-      top: 80px;
-      padding: 10px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .red-glow { background: red; }
-    .shake { animation: shake 0.2s infinite; }
-    .beg { transform: scale(0.95); }
-    .green { background: green; }
-
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(3px); }
-      100% { transform: translateX(-3px); }
-    }
-  </style>
-</head>
-
-<body>
-
-<h1>This is a web</h1>
-  
-<h2>This is the web, you asked for a web, not for there to be something in it. After trial and error (a LOT of it) it works, so grade me! (for better expirience start at 0)</h2>
-  
-<div class="rating-container">
-
-  <select id="rating">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-  </select>
-
-  <button id="submitBtn">Submit</button>
-  <div id="message"></div>
-  <div id="extraLink"></div>
-  
-</div>
-
 <script>
-  
 document.addEventListener("DOMContentLoaded", function () {
-  
-const rating = document.getElementById("rating");
-const button = document.getElementById("submitBtn");
-const message = document.getElementById("message");
-const extraLink = document.getElementById("extraLink");
-  
-function reset() {
-  button.className = "";
-  button.style.left = "0px";
-  button.style.top = "80px";
-}
 
-function confetti() {
-  for (let i = 0; i < 40; i++) {
-    const d = document.createElement("div");
-    d.style.position = "fixed";
-    d.style.width = "6px";
-    d.style.height = "6px";
-    d.style.background = "hsl(" + Math.random()*360 + ",100%,50%)";
-    d.style.left = Math.random() * window.innerWidth + "px";
-    d.style.top = "-10px";
-    document.body.appendChild(d);
- 
-    d.animate(
-      [{ transform: "translateY(0)" }, { transform: "translateY(100vh)" }],
-      { duration: 1500 }
-    ).onfinish = () => d.remove();
+  const rating = document.getElementById("rating");
+  const button = document.getElementById("submitBtn");
+  const message = document.getElementById("message");
+  const extraLink = document.getElementById("extraLink");
+
+  function reset() {
+    message.textContent = "";
+    button.className = "";
+    button.style.left = "0px";
+    button.style.top = "80px";
+    extraLink.innerHTML = "";
   }
-}
 
-button.addEventListener("mouseover", () => {
-  if (rating.value === "0") {
-    button.style.left = Math.random()*200 + "px";
-    button.style.top = Math.random()*100 + "px";
+  function confetti() {
+    for (let i = 0; i < 40; i++) {
+      const d = document.createElement("div");
+      d.style.position = "fixed";
+      d.style.width = "6px";
+      d.style.height = "6px";
+      d.style.background = "hsl(" + Math.random()*360 + ",100%,50%)";
+      d.style.left = Math.random() * window.innerWidth + "px";
+      d.style.top = "-10px";
+
+      document.body.appendChild(d);
+
+      d.animate(
+        [{ transform: "translateY(0)" }, { transform: "translateY(100vh)" }],
+        { duration: 1500 }
+      ).onfinish = () => d.remove();
+    }
   }
-});
 
-button.addEventListener("click", (e) => {
-  e.preventDefault();
-  reset();
+  // 0 → escape button
+  button.addEventListener("mouseover", () => {
+    if (rating.value === "0") {
+      button.style.left = Math.random() * 200 + "px";
+      button.style.top = Math.random() * 100 + "px";
+    }
+  });
 
-  const v = rating.value;
+  // CLICK LOGIC
+  button.addEventListener("click", function (e) {
+    e.preventDefault();
 
-  if (v === "0") message.textContent = "No";
-  else if (v === "1") message.textContent = "The button is too sad to accept this grade :(";
-  else if (v === "2") { message.textContent = "Oh no! An error! a totally legit and not fake error that forces you to up my grade..."; button.classList.add("red-glow","shake"); }
-  else if (v === "3") { message.textContent = "the button hates the number 3, so he won't accept it"; button.classList.add("red-glow"); }
-  else if (v === "4") { message.textContent = "A 4 is almost a 5 right? why give me a 4? It's just being mean at this point!"; button.classList.add("beg"); }
-  else if (v === "5") message.textContent = "The button is looking somewhere else and he didn't notice you tried to submit it";
-  else if (v === "6") message.textContent = "Double 3?! I said no 3!";
-  else if (v === "7") message.textContent = "Wait wait, why is 6 afraid of 7? because 789! HAHA, but yeah, no way I'm getting a seven";
-  else if (v === "8") message.textContent = "I made a bit to every number, that deserves a 9 at least!";
-  else if (v === "9") {
-    message.textContent = "upgrading...";
-    setTimeout(() => rating.value = "10", 500);
-  }
-  else if (v === "10") {
-    message.textContent = "OK";
-    button.classList.add("green");
-    confetti();
+    const v = rating.value;
 
-     if (extraLink) {
-    extraLink.innerHTML = '<a href="blog.html">Read how this was made</a>';
-  }
-  }
+    reset();
+
+    if (v === "0") {
+      message.textContent = "No.";
+      return;
+    }
+
+    if (v === "10") {
+      message.textContent = "OK";
+      button.classList.add("green");
+      confetti();
+
+      extraLink.innerHTML =
+        '<a href="blog.html">Read how this was made</a>';
+      return;
+    }
+
+    // everything else (temporary simple fallback)
+    message.textContent = "Pick another number.";
+  });
+
 });
 </script>
-
-</body>
-</html>
