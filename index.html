@@ -13,15 +13,17 @@ body {
 .rating-container {
   position: relative;
   width: 300px;
-  height: 200px;
+  min-height: 220px;
 }
 
+/* safer positioning so reset doesn't collide with message */
 #submitBtn {
   position: absolute;
   left: 0;
   top: 80px;
   padding: 10px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .green {
@@ -29,12 +31,56 @@ body {
   color: white;
 }
 
+/* message now sits BELOW natural flow, not inside button zone */
 #message {
-  margin-top: 60px;
+  margin-top: 110px;
+  min-height: 40px;
 }
 
 #extraLink {
   margin-top: 10px;
+}
+
+/* ===== EMOTION EFFECTS (RESTORED) ===== */
+
+.red-glow {
+  box-shadow: 0 0 12px red;
+  background: darkred !important;
+}
+
+.shake {
+  animation: shake 0.25s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+.fire::after {
+  content: "🔥";
+  position: absolute;
+  right: -18px;
+  top: -10px;
+  animation: flicker 0.2s infinite alternate;
+}
+
+@keyframes flicker {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(1.2); opacity: 1; }
+}
+
+.beg {
+  animation: beg 1s infinite;
+}
+
+@keyframes beg {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
 }
 </style>
 </head>
@@ -102,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // escape button for 0
+  // escape behavior (0)
   button.addEventListener("mouseover", () => {
     if (rating.value === "0") {
       button.style.left = Math.random()*200 + "px";
@@ -117,8 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     reset();
 
-    // ===== YOUR JOKES GO HERE =====
-    // Replace ONLY the text below with your exact original jokes
+    // ===== EMOTIONAL RESPONSES RESTORED =====
 
     if (v === "0") {
       message.textContent = "No.";
@@ -132,16 +177,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (v === "2") {
       message.textContent = "Choose higher.";
+      button.classList.add("red-glow", "shake");
       return;
     }
 
     if (v === "3") {
       message.textContent = "No way.";
+      button.classList.add("red-glow", "shake", "fire");
       return;
     }
 
     if (v === "4") {
       message.textContent = "Almost 5.";
+      button.classList.add("beg");
       return;
     }
 
@@ -152,18 +200,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (v === "6") {
       message.textContent = "Double 3.";
+      button.classList.add("red-glow", "shake");
       return;
     }
 
     if (v === "7") {
       message.textContent = "haha nice try.";
+      button.classList.add("shake");
       return;
     }
 
     if (v === "8") {
       message.textContent = "Nope.";
+      button.classList.add("shake");
       return;
     }
+
+    // 9 and 10 untouched (as requested)
 
     if (v === "9") {
       message.textContent = "Upgrading...";
