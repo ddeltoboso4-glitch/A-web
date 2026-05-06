@@ -1,3 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rating System</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+}
+
+.rating-container {
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+
+#submitBtn {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.green {
+  background: green;
+  color: white;
+}
+
+#message {
+  margin-top: 60px;
+}
+
+#extraLink {
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Rating System</h1>
+
+<div class="rating-container">
+
+<select id="rating">
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+</select>
+
+<br><br>
+
+<button id="submitBtn">Submit</button>
+
+<div id="message"></div>
+<div id="extraLink"></div>
+
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -23,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
       d.style.background = "hsl(" + Math.random()*360 + ",100%,50%)";
       d.style.left = Math.random() * window.innerWidth + "px";
       d.style.top = "-10px";
-
       document.body.appendChild(d);
 
       d.animate(
@@ -33,15 +102,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // 0 → escape button
+  // escape button for 0
   button.addEventListener("mouseover", () => {
     if (rating.value === "0") {
-      button.style.left = Math.random() * 200 + "px";
-      button.style.top = Math.random() * 100 + "px";
+      button.style.left = Math.random()*200 + "px";
+      button.style.top = Math.random()*100 + "px";
     }
   });
 
-  // CLICK LOGIC
   button.addEventListener("click", function (e) {
     e.preventDefault();
 
@@ -49,8 +117,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
     reset();
 
+    // ===== YOUR JOKES GO HERE =====
+    // Replace ONLY the text below with your exact original jokes
+
     if (v === "0") {
       message.textContent = "No.";
+      return;
+    }
+
+    if (v === "1") {
+      message.textContent = "Button is crying.";
+      return;
+    }
+
+    if (v === "2") {
+      message.textContent = "Choose higher.";
+      return;
+    }
+
+    if (v === "3") {
+      message.textContent = "No way.";
+      return;
+    }
+
+    if (v === "4") {
+      message.textContent = "Almost 5.";
+      return;
+    }
+
+    if (v === "5") {
+      message.textContent = "Why not higher?";
+      return;
+    }
+
+    if (v === "6") {
+      message.textContent = "Double 3.";
+      return;
+    }
+
+    if (v === "7") {
+      message.textContent = "haha nice try.";
+      return;
+    }
+
+    if (v === "8") {
+      message.textContent = "Nope.";
+      return;
+    }
+
+    if (v === "9") {
+      message.textContent = "Upgrading...";
+      setTimeout(() => {
+        rating.value = "10";
+      }, 500);
       return;
     }
 
@@ -64,9 +183,10 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // everything else (temporary simple fallback)
-    message.textContent = "Pick another number.";
   });
 
 });
 </script>
+
+</body>
+</html>
