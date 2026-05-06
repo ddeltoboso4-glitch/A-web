@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Rating System</title>
-
+<title>A web</title>
+  
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -88,7 +88,8 @@ body {
 <body>
 
 <h1>Rating System</h1>
-
+<h3>This is a web, please rate it one to ten. (for better expirience start rating at 0)</h3>
+  
 <div class="rating-container">
 
 <select id="rating">
@@ -171,41 +172,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (v === "1") {
-      message.textContent = "Button is crying.";
+      message.textContent = "You made the button cry! How can you be so mean as to give him a 1?!";
       return;
     }
 
     if (v === "2") {
-      message.textContent = "Choose higher.";
+      message.textContent = "An error! A totally legit and not fake error that just won't let you give a score as low as 2...";
       button.classList.add("red-glow", "shake");
       return;
     }
 
     if (v === "3") {
-      message.textContent = "No way.";
+      message.textContent = "It turns out 3 is the button's least favourite number, so he jsut won't let you submit it.";
       button.classList.add("red-glow", "shake", "fire");
       return;
     }
 
     if (v === "4") {
-      message.textContent = "Almost 5.";
+      message.textContent = "4 is almost a 5, don't be stingy! the button doesn't like stingy people and won't let you submit it.";
       button.classList.add("beg");
       return;
     }
 
     if (v === "5") {
-      message.textContent = "Why not higher?";
+      message.textContent = "Oh, the button is looking at a fly passing by and is too distracted to submit the option";
       return;
     }
 
     if (v === "6") {
-      message.textContent = "Double 3.";
+      message.textContent = "You thought youd trick us?! That is just 3+3! The three is the button's least favourite number";
       button.classList.add("red-glow", "shake");
       return;
     }
 
     if (v === "7") {
-      message.textContent = "haha nice try.";
+      message.textContent = "why is 6 afraid of 7? because 789.";
       button.classList.add("shake");
       return;
     }
